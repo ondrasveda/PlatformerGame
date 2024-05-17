@@ -22,37 +22,6 @@ public class PauseButtons{
         bounds = new Rectangle(xPosition,yPosition,width,height);
     }
 
-    public int getxPosition() {
-        return xPosition;
-    }
-
-    public void setxPosition(int xPosition) {
-        this.xPosition = xPosition;
-    }
-
-    public int getyPosition() {
-        return yPosition;
-    }
-
-    public void setyPosition(int yPosition) {
-        this.yPosition = yPosition;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
 
     public Rectangle getBounds() {
         return bounds;

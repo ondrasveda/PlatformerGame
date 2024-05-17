@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class UnpauseRestartMenuButtons extends PauseButtons {
-    private BufferedImage[] images;
+    private BufferedImage[][] images;
     private int rowIndex;
     private int index;
     private boolean mouseOver;
@@ -21,30 +21,36 @@ public class UnpauseRestartMenuButtons extends PauseButtons {
 
     private void loadImages() {
         BufferedImage temporaryImage = Load_Save.getImages(Load_Save.unpauseRestartMenuButtons);
-        images = new BufferedImage[3];
-        for (int i = 0; i < images.length; i++) {
-            images[i] = temporaryImage.getSubimage(i * Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonDefaultSize,
-                    i * Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonDefaultSize,
-                    Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonDefaultSize,
-                    Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonDefaultSize);
+        images = new BufferedImage[3][3];
+        for (int j = 0; j < images.length; j++) {
+            for(int i = 0; i<images[j].length; i++) {
+
+                images[j][i] = temporaryImage.getSubimage(j * 56, i * 56, 56, 56);
+            }
+
         }
     }
 
+
     public void draw(Graphics graphics) {
-        graphics.drawImage(images[index], xPosition, yPosition,
+        graphics.drawImage(images[index][rowIndex], xPosition, yPosition,
                 Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize,
                 Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, null);
     }
 
     public void update() {
-        if(mouseOver){
+        if (mouseOver) {
             index = 1;
         }
-        if (mousePressed){
+        if (mousePressed) {
             index = 2;
         }
+        if (!mouseOver && !mousePressed) {
+            index = 0;
+        }
     }
-    public void resetButton(){
+
+    public void resetButton() {
         mouseOver = false;
         mousePressed = false;
     }

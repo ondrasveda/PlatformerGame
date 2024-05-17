@@ -36,15 +36,15 @@ public class PauseMenu {
         int unpauseX = 462 * (int) Game.tileScale;
         int yPos = 325 * (int) Game.tileScale;
 
-        menuButton = new UnpauseRestartMenuButtons(menuX, yPos,
-                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize,
-                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, 2);
-        restartButton = new UnpauseRestartMenuButtons(restartX, yPos,
-                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize,
-                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, 1);
         unpauseButton = new UnpauseRestartMenuButtons(unpauseX, yPos,
                 Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize,
                 Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, 0);
+        restartButton = new UnpauseRestartMenuButtons(restartX, yPos,
+                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize,
+                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, 1 );
+        menuButton = new UnpauseRestartMenuButtons(menuX, yPos,
+                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize,
+                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, 2 );
 
 
     }
@@ -53,8 +53,10 @@ public class PauseMenu {
         int soundXPosition = 450 * (int) Game.tileScale;
         int musicYPosition = 165 * (int) Game.tileScale;
         int sfxYPosition = 211 * (int) Game.tileScale;
-        musicOnOffButton = new SoundButtons(soundXPosition, musicYPosition, Constants.Ui.PauseButton.soundButtonSize, Constants.Ui.PauseButton.soundButtonSize);
-        sfxOnOffButton = new SoundButtons(soundXPosition, sfxYPosition, Constants.Ui.PauseButton.soundButtonSize, Constants.Ui.PauseButton.soundButtonSize);
+        musicOnOffButton = new SoundButtons(soundXPosition, musicYPosition,
+                Constants.Ui.PauseButton.soundButtonSize, Constants.Ui.PauseButton.soundButtonSize);
+        sfxOnOffButton = new SoundButtons(soundXPosition, sfxYPosition,
+                Constants.Ui.PauseButton.soundButtonSize, Constants.Ui.PauseButton.soundButtonSize);
     }
 
     private void loadBackground() {
