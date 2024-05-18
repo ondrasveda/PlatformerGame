@@ -124,6 +124,9 @@ public class PauseMenu {
         }else if(isIn(e,menuButton)){
             if(menuButton.isMousePressed()){
                 Gamestate.gamestate = Gamestate.MENU;
+                if(playing.isPaused()){
+                    playing.unpauseGame();
+                }
             }
         }else if(isIn(e,restartButton)){
             if(restartButton.isMousePressed()){
