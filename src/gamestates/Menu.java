@@ -12,31 +12,24 @@ import java.awt.image.BufferedImage;
 public class Menu extends State implements StateMethods {
 
     private MenuButton[] buttons = new MenuButton[3];
-    private BufferedImage backgroundImage;
     private int menuX;
     private int menuY;
     private int menuWidth;
     private int menuHeight;
+    private BufferedImage menuBackground;
 
 
     public Menu(Game game) {
         super(game);
         loadButtons();
-        loadBackground();
+        menuBackground = Load_Save.getImages(Load_Save.menuBgImg);
     }
 
-    private void loadBackground() {
-        backgroundImage = Load_Save.getImages(Load_Save.menuBackground);
-        menuWidth = (int) (backgroundImage.getWidth() * Game.tileScale);
-        menuHeight = (int) (backgroundImage.getHeight() * Game.tileScale);
-        menuX = Game.gameWidth / 2 - menuWidth / 2;
-        menuY = (int) (45 * Game.tileScale);
-    }
 
     private void loadButtons() {
-        buttons[0] = new MenuButton(Game.gameWidth / 2, (int) (150 * Game.tileScale), 0, Gamestate.PLAYING);
-        buttons[1] = new MenuButton(Game.gameWidth / 2, (int) (220 * Game.tileScale), 1, Gamestate.OPTIONS);
-        buttons[2] = new MenuButton(Game.gameWidth / 2, (int) (290 * Game.tileScale), 2, Gamestate.QUIT);
+        buttons[0] = new MenuButton(Game.gameWidth / 2, (int) (100 * Game.tileScale), 0, Gamestate.PLAYING);
+        buttons[1] = new MenuButton(Game.gameWidth / 2, (int) (170 * Game.tileScale), 1, Gamestate.OPTIONS);
+        buttons[2] = new MenuButton(Game.gameWidth / 2, (int) (240 * Game.tileScale), 2, Gamestate.QUIT);
     }
 
     @Override
@@ -48,7 +41,7 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void draw(Graphics graphics) {
-        graphics.drawImage(backgroundImage, menuX, menuY, menuWidth, menuHeight, null);
+        graphics.drawImage(menuBackground, 0, 0, Game.gameWidth, Game.gameHeight, null);
         for (MenuButton menuButton : buttons) {
             menuButton.draw(graphics);
         }
