@@ -20,7 +20,7 @@ public class Load_Save {
     public static final String unpauseRestartMenuButtons = "unpause_restart_menu_buttons.png";
     public static final String menuBgImg = "menu_bg_img.png";
     public static final String levelBackground = "level_background.png";
-    public static final String levelClouds = "cloud.png";
+
 
 
     public static BufferedImage getImages(String fileName) {
