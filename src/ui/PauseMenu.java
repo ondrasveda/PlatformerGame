@@ -130,8 +130,7 @@ public class PauseMenu {
             }
         }else if(isIn(e,restartButton)){
             if(restartButton.isMousePressed()){
-                //provizorni
-                System.out.println("restart");
+                playing.reset();
             }
         }else if(isIn(e,unpauseButton)){
             if(unpauseButton.isMousePressed()){
