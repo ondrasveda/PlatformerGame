@@ -17,7 +17,6 @@ public class LevelHandler {
 
     public LevelHandler(Game game) {
         this.game = game;
-        //this.levels = LoadSave.GetImages(LoadSave.levelImage);
         importLevelOutsides();
         level1 = new Level(Load_Save.getLevelData());
     }
@@ -33,11 +32,11 @@ public class LevelHandler {
         }
     }
 
-    public void draw(Graphics graphics) {
+    public void draw(Graphics graphics, int levelOffset) {
         for (int j = 0; j < Game.gameTileHeight; j++) {
-            for (int i = 0; i < Game.gameTileWidth; i++) {
+            for (int i = 0; i < level1.getLevelData()[0].length; i++) {
                 int index = level1.getImageIndex(i, j);
-                graphics.drawImage(levels[index], i * tileSize, j * tileSize, null);
+                graphics.drawImage(levels[index],  tileSize *i - levelOffset , j * tileSize, null);
             }
         }
 

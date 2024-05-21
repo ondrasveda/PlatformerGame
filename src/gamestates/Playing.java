@@ -4,25 +4,32 @@ import entities.Player;
 import levels.LevelHandler;
 import main.Game;
 import ui.PauseMenu;
+import utilities.Load_Save;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 public class Playing extends State implements StateMethods {
 
     private Player player;
     private LevelHandler levelHandler;
-
-
-
     private boolean paused = false;
     private PauseMenu pauseMenu;
-
+    private int levelOffset;
+    private int leftBorder = (int) (0.15 * Game.gameWidth);
+    private int rightBorder = (int) (0.85 * Game.gameWidth);
+    private int levelTileSize = Load_Save.getLevelData()[0].length;
+    private int maxTileOffset = levelTileSize - Game.gameTileWidth;
+    private int maxPixelOffset = maxTileOffset * Game.tileSize;
+    private BufferedImage background;
+    private boolean levelCompleted;
 
     public Playing(Game game) {
         super(game);
         initializeClasses();
+        background = Load_Save.getImages(Load_Save.levelBackground);
     }
 
     private void initializeClasses() {
@@ -48,15 +55,34 @@ public class Playing extends State implements StateMethods {
         if (!paused) {
             levelHandler.update();
             player.update();
+            checkIfPlayerNearBorder();
         } else {
             pauseMenu.update();
         }
     }
 
+    private void checkIfPlayerNearBorder() {
+        int playerXPosition = (int) player.getHitbox().x;
+        int difference = playerXPosition - levelOffset;
+        if (difference > rightBorder) {
+            levelOffset += difference - rightBorder;
+        } else if (difference < leftBorder) {
+            levelOffset += difference - leftBorder;
+        }
+
+        if (levelOffset > maxPixelOffset) {
+            levelOffset = maxPixelOffset;
+        } else if (levelOffset < 0) {
+            levelOffset = 0;
+        }
+    }
+
     @Override
     public void draw(Graphics graphics) {
-        levelHandler.draw(graphics);
-        player.render(graphics);
+        graphics.drawImage(background, 0, 0, Game.gameWidth, Game.gameHeight, null);
+
+        levelHandler.draw(graphics, levelOffset);
+        player.render(graphics, levelOffset);
         if (paused) {
             pauseMenu.draw(graphics);
         }
@@ -106,7 +132,7 @@ public class Playing extends State implements StateMethods {
                 if (!paused) {
                     paused = true;
                     break;
-                }else if(paused){
+                } else if (paused) {
                     paused = false;
                     break;
                 }
@@ -131,7 +157,14 @@ public class Playing extends State implements StateMethods {
     public void unpauseGame() {
         paused = false;
     }
+
     public boolean isPaused() {
         return paused;
+    }
+
+    public void reset() {
+        paused = false;
+        levelCompleted = false;
+        player.resetAll();
     }
 }

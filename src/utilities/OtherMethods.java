@@ -15,10 +15,12 @@ public class OtherMethods {
     }
 
     private static boolean isSolid(float x, float y, int[][] levelData) {
-        if (x < 0 || x >= Game.gameWidth) {
+        int levelWidth = levelData[0].length * Game.tileSize;
+        int levelHeight = levelData.length * Game.tileSize;
+        if (x < 0 || x >= levelWidth) {
             return true;
         }
-        if (y < 0 || y >= Game.gameHeight) {
+        if (y < 0 || y >= levelHeight) {
             return true;
         }
         float xIndex = x / Game.tileSize;
