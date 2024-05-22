@@ -3,6 +3,7 @@ package gamestates;
 import entities.Player;
 import levels.LevelHandler;
 import main.Game;
+import object.ObjectHandler;
 import ui.PauseMenu;
 import utilities.Load_Save;
 
@@ -15,6 +16,7 @@ public class Playing extends State implements StateMethods {
 
     private Player player;
     private LevelHandler levelHandler;
+    private ObjectHandler objectHandler;
     private boolean paused = false;
     private PauseMenu pauseMenu;
     private int levelOffset;
@@ -25,6 +27,7 @@ public class Playing extends State implements StateMethods {
     private int maxPixelOffset = maxTileOffset * Game.tileSize;
     private BufferedImage background;
     private boolean levelCompleted;
+    private boolean gameOver;
 
     public Playing(Game game) {
         super(game);
@@ -75,6 +78,12 @@ public class Playing extends State implements StateMethods {
         } else if (levelOffset < 0) {
             levelOffset = 0;
         }
+    }
+    public void checkSpikesTouched(Player p) {
+        objectHandler.checkSpikesTouched(p);
+    }
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
     }
 
     @Override
@@ -163,6 +172,7 @@ public class Playing extends State implements StateMethods {
     }
 
     public void reset() {
+        gameOver = false;
         paused = false;
         levelCompleted = false;
         player.resetAll();

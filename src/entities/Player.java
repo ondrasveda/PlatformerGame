@@ -1,5 +1,6 @@
 package entities;
 
+import gamestates.Playing;
 import main.Game;
 import utilities.Constants;
 import utilities.Load_Save;
@@ -36,6 +37,7 @@ public class Player extends Entity {
     private float jumpSpeed = -4f * Game.tileScale;
     private float fallSpeedAfterCollisionWithRoof = 0.5f * Game.tileScale;
     private boolean playerInAir = false;
+    private Playing playing;
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
@@ -198,6 +200,10 @@ public class Player extends Entity {
 
     public void setPlayerAttacking(boolean playerAttacking) {
         this.playerAttacking = playerAttacking;
+    }
+    public void kill() {
+        playing.setGameOver(true);
+        return;
     }
     public void setJump(boolean jump) {
         this.jump = jump;
