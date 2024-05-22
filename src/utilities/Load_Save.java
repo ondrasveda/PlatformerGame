@@ -14,13 +14,12 @@ public class Load_Save {
     public static final String levelOne = "level_one.png";
     public static final String levelOneWide = "level_one_wide.png";
     public static final String menuButtons = "menu_button_textures.png";
-    public static final String menuBackground = "menu_background.png";
     public static final String pauseBackground = "pause_background.png";
     public static final String volumeButtons = "volume_buttons.png";
     public static final String unpauseRestartMenuButtons = "unpause_restart_menu_buttons.png";
     public static final String menuBgImg = "menu_bg_img.png";
     public static final String levelBackground = "level_background.png";
-
+    public static final String spikes = "spikes.png";
 
 
     public static BufferedImage getImages(String fileName) {
