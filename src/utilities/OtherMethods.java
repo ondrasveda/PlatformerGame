@@ -1,8 +1,14 @@
 package utilities;
 
 import main.Game;
+import object.Spike;
 
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import object.Spike;
 
 public class OtherMethods {
 
@@ -64,5 +70,43 @@ public class OtherMethods {
             return false;
         }
         return true;
+    }
+
+
+    public static Point GetPlayerSpawn(BufferedImage img) {
+        for (int j = 0; j < img.getHeight(); j++)
+            for (int i = 0; i < img.getWidth(); i++) {
+                Color color = new Color(img.getRGB(i, j));
+                int value = color.getGreen();
+                if (value == 100)
+                    return new Point(i * Game.tileSize, j * Game.tileSize);
+            }
+        return new Point(Game.tileSize, Game.tileSize);
+    }
+
+    public static ArrayList<Spike> GetSpikes(BufferedImage img) {
+        ArrayList<Spike> list = new ArrayList<>();
+
+        for (int j = 0; j < img.getHeight(); j++)
+            for (int i = 0; i < img.getWidth(); i++) {
+                Color color = new Color(img.getRGB(i, j));
+                int value = color.getBlue();
+                if (value ==  1)
+                    list.add(new Spike(i * Game.tileSize, j * Game.tileSize, 1  ));
+            }
+
+        return list;
+    }
+    public static int[][] GetLevelData(BufferedImage img) {
+        int[][] lvlData = new int[img.getHeight()][img.getWidth()];
+        for (int j = 0; j < img.getHeight(); j++)
+            for (int i = 0; i < img.getWidth(); i++) {
+                Color color = new Color(img.getRGB(i, j));
+                int value = color.getRed();
+                if (value >= 48)
+                    value = 0;
+                lvlData[j][i] = value;
+            }
+        return lvlData;
     }
 }
