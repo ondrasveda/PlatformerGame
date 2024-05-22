@@ -7,6 +7,13 @@ public class Constants {
     }
 
     public static class Ui{
+        public static class ObjectConstants{
+            public static final int spike = 1;
+            public static final int spikeSizeDefault = 32;
+            public static final int SpikeWidth = (int) (Game.tileScale * spikeSizeDefault);
+            public static final int SpikeHeight = (int) (Game.tileScale * spikeSizeDefault);
+
+        }
         public static class MenuButton {
             public static final int buttonDefaultWidth = 140;
             public static final int buttonDefaultHeight = 56;
