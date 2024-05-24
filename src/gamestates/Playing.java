@@ -37,7 +37,7 @@ public class Playing extends State implements StateMethods {
 
     private void initializeClasses() {
         levelHandler = new LevelHandler(game);
-        player = new Player(200, 200, (int) (64 * Game.tileScale), (int) (40 * Game.tileScale));
+        player = new Player(200, 150, (int) (64 * Game.tileScale), (int) (40 * Game.tileScale));
         player.loadLevelData(levelHandler.getCurrentLevel().getLevelData());
         pauseMenu = new PauseMenu(this);
 
@@ -47,11 +47,6 @@ public class Playing extends State implements StateMethods {
     public Player getPlayer() {
         return player;
     }
-
-    public void focusLost() {
-        player.resetDirection();
-    }
-
 
     @Override
     public void update() {

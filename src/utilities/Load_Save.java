@@ -13,6 +13,7 @@ public class Load_Save {
     public static final String levelImage = "level_textures.png";
     public static final String levelOne = "level_one.png";
     public static final String levelOneWide = "level_one_wide.png";
+    public static final String bigLevel = "big_level.png";
     public static final String menuButtons = "menu_button_textures.png";
     public static final String pauseBackground = "pause_background.png";
     public static final String volumeButtons = "volume_buttons.png";
@@ -40,7 +41,7 @@ public class Load_Save {
     }
 
     public static int[][] getLevelData() {
-        BufferedImage image = getImages(levelOneWide);
+        BufferedImage image = getImages(bigLevel); //biglevel
         int[][] levelData = new int[image.getHeight()][image.getWidth()];
 
         for (int j = 0; j < image.getHeight(); j++) {

@@ -13,12 +13,12 @@ public class LevelHandler {
 
     private Game game;
     private BufferedImage[] levels;
-    private Level level1;
+    private Level level;
 
     public LevelHandler(Game game) {
         this.game = game;
         importLevelOutsides();
-        level1 = new Level(Load_Save.getLevelData());
+        level = new Level(Load_Save.getLevelData());
     }
 
     private void importLevelOutsides() {
@@ -34,8 +34,8 @@ public class LevelHandler {
 
     public void draw(Graphics graphics, int levelOffset) {
         for (int j = 0; j < Game.gameTileHeight; j++) {
-            for (int i = 0; i < level1.getLevelData()[0].length; i++) {
-                int index = level1.getImageIndex(i, j);
+            for (int i = 0; i < level.getLevelData()[0].length; i++) {
+                int index = level.getImageIndex(i, j);
                 graphics.drawImage(levels[index],  tileSize *i - levelOffset , j * tileSize, null);
             }
         }
@@ -47,7 +47,7 @@ public class LevelHandler {
     }
 
     public Level getCurrentLevel() {
-        return level1;
+        return level;
     }
 
 }
