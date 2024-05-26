@@ -12,8 +12,8 @@ import java.awt.image.BufferedImage;
 
 public class PauseMenu {
     private BufferedImage background;
-    private int backgroundXPos;
-    private int backgroundYPos;
+    private int backgroundXPosition;
+    private int backgroundYPosition;
     private int backgroundWidth;
     private int backgroundHeight;
     private SoundButtons musicOnOffButton;
@@ -45,8 +45,6 @@ public class PauseMenu {
         menuButton = new UnpauseRestartMenuButtons(menuX, yPos,
                 Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize,
                 Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, 2 );
-
-
     }
 
     private void drawPauseButtons() {
@@ -63,8 +61,8 @@ public class PauseMenu {
         background = Load_Save.getImages(Load_Save.pauseBackground);
         backgroundWidth = background.getWidth() * (int) Game.tileScale;
         backgroundHeight = background.getHeight() * (int) Game.tileScale;
-        backgroundXPos = Game.gameWidth / 2 - backgroundWidth / 2;
-        backgroundYPos = 50 * (int) Game.tileScale;
+        backgroundXPosition = Game.gameWidth / 2 - backgroundWidth / 2;
+        backgroundYPosition = 50 * (int) Game.tileScale;
     }
 
     public void update() {
@@ -77,7 +75,7 @@ public class PauseMenu {
     }
 
     public void draw(Graphics graphics) {
-        graphics.drawImage(background, backgroundXPos, backgroundYPos, backgroundWidth, backgroundHeight, null);
+        graphics.drawImage(background, backgroundXPosition, backgroundYPosition, backgroundWidth, backgroundHeight, null);
 
         musicOnOffButton.draw(graphics);
         sfxOnOffButton.draw(graphics);
@@ -92,10 +90,6 @@ public class PauseMenu {
         }else{
             return false;
         }
-    }
-
-    public void mouseDragged(MouseEvent e) {
-
     }
 
     public void mousePressed(MouseEvent e) {

@@ -10,15 +10,13 @@ import java.io.InputStream;
 public class Load_Save {
 
     public static final String playerImage = "player.png";
-    public static final String levelImage = "level_textures.png";
-    public static final String levelOne = "level_one.png";
-    public static final String levelOneWide = "level_one_wide.png";
-    public static final String bigLevel = "big_level.png";
+    public static final String levelTextures = "level_textures.png"; //free-game-assets.itch.io/free-green-zone-tileset-pixel-art
+    public static final String level = "level.png";
     public static final String menuButtons = "menu_button_textures.png";
     public static final String pauseBackground = "pause_background.png";
     public static final String volumeButtons = "volume_buttons.png";
     public static final String unpauseRestartMenuButtons = "unpause_restart_menu_buttons.png";
-    public static final String menuBgImg = "menu_bg_img.png";
+    public static final String menuBgImg = "menu_background.png";
     public static final String levelBackground = "level_background.png";
     public static final String spikes = "spikes.png";
 
@@ -41,7 +39,7 @@ public class Load_Save {
     }
 
     public static int[][] getLevelData() {
-        BufferedImage image = getImages(bigLevel); //biglevel
+        BufferedImage image = getImages(level);
         int[][] levelData = new int[image.getHeight()][image.getWidth()];
 
         for (int j = 0; j < image.getHeight(); j++) {
@@ -49,7 +47,7 @@ public class Load_Save {
                 Color color = new Color(image.getRGB(i, j));
                 int value = color.getRed();
                 if (value >= 48) {
-                    value = 0;
+                    value = 11;
                 }
                 levelData[j][i] = color.getRed();
             }

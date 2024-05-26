@@ -54,14 +54,14 @@ public class Player extends Entity {
 
     public void render(Graphics graphics, int levelOffset) {
 
-        graphics.drawImage(this.animations[this.playerAction][this.animationIndex],
+        graphics.drawImage(animations[playerAction][animationIndex],
                 (int) (hitbox.x - xHitboxOffset) - levelOffset, (int) (hitbox.y - yHitboxOffset), width, height, null);
         drawHitbox(graphics);
     }
 
     private void loadAnimation() {
         image = Load_Save.getImages(Load_Save.playerImage);
-        this.animations = new BufferedImage[9][6];
+        this.animations = new BufferedImage[4][6];
         for (int j = 0; j < this.animations.length; j++) {
             for (int i = 0; i < this.animations[j].length; i++) {
                 this.animations[j][i] = this.image.getSubimage(i * 64, j * 40, 64, 40);
@@ -101,9 +101,6 @@ public class Player extends Entity {
                 }else if(airSpeed > 0){
                     playerAction = 3;
                 }
-        }
-        if (playerAttacking) {
-            playerAction = 6;
         }
         if (startAnimation != this.playerAction) {
             this.resetAnimationTick();
@@ -187,7 +184,6 @@ public class Player extends Entity {
     public void resetAll() {
         resetDirection();
         playerInAir = false;
-        playerAttacking = false;
         playerMoving = false;
 
 
@@ -198,13 +194,8 @@ public class Player extends Entity {
             playerInAir = true;
     }
 
-    public void setPlayerAttacking(boolean playerAttacking) {
-        this.playerAttacking = playerAttacking;
-    }
-    public void kill() {
-        playing.setGameOver(true);
-        return;
-    }
+
+
     public void setJump(boolean jump) {
         this.jump = jump;
     }

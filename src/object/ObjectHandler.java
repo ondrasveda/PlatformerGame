@@ -24,8 +24,10 @@ public class ObjectHandler {
 
         public void checkSpikesTouched(Player player) {
             for (Spike s : spikes)
-                if (s.getHitbox().intersects(player.getHitbox()))
-                    player.kill();
+                if (s.getHitbox().intersects(player.getHitbox())){
+
+                }
+
         }
 
         private void loadImages() {

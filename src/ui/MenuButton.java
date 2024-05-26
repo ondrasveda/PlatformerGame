@@ -36,7 +36,8 @@ public class MenuButton {
         images = new BufferedImage[3];
         BufferedImage tempSave = Load_Save.getImages(Load_Save.menuButtons);
         for(int i = 0; i < images.length; i++){
-            images[i] = tempSave.getSubimage(i * Constants.Ui.MenuButton.buttonDefaultWidth, rowIndex * Constants.Ui.MenuButton.buttonDefaultHeight, Constants.Ui.MenuButton.buttonDefaultWidth, Constants.Ui.MenuButton.buttonDefaultHeight);
+            images[i] = tempSave.getSubimage(i * Constants.Ui.MenuButton.buttonDefaultWidth, rowIndex * Constants.Ui.MenuButton.buttonDefaultHeight,
+                    Constants.Ui.MenuButton.buttonDefaultWidth, Constants.Ui.MenuButton.buttonDefaultHeight);
         }
     }
     public void draw(Graphics graphics){
@@ -56,10 +57,6 @@ public class MenuButton {
     public void resetBooleans(){
         mouseOver = false;
         mousePressed = false;
-    }
-
-    public boolean isMouseOver() {
-        return mouseOver;
     }
 
     public void setMouseOver(boolean mouseOver) {

@@ -22,7 +22,7 @@ public class LevelHandler {
     }
 
     private void importLevelOutsides() {
-        BufferedImage image = Load_Save.getImages(Load_Save.levelImage);
+        BufferedImage image = Load_Save.getImages(Load_Save.levelTextures);
         levels = new BufferedImage[48];
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 12; i++) {

@@ -4,6 +4,7 @@ import entities.Player;
 import levels.LevelHandler;
 import main.Game;
 import object.ObjectHandler;
+import ui.LevelEnd;
 import ui.PauseMenu;
 import utilities.Load_Save;
 
@@ -19,15 +20,16 @@ public class Playing extends State implements StateMethods {
     private ObjectHandler objectHandler;
     private boolean paused = false;
     private PauseMenu pauseMenu;
+    private LevelEnd levelEnd;
     private int levelOffset;
-    private int leftBorder = (int) (0.15 * Game.gameWidth);
-    private int rightBorder = (int) (0.85 * Game.gameWidth);
+    private int leftBorder = (int) (0.25 * Game.gameWidth);
+    private int rightBorder = (int) (0.75 * Game.gameWidth);
     private int levelTileSize = Load_Save.getLevelData()[0].length;
     private int maxTileOffset = levelTileSize - Game.gameTileWidth;
     private int maxPixelOffset = maxTileOffset * Game.tileSize;
     private BufferedImage background;
-    private boolean levelCompleted;
-    private boolean gameOver;
+    private boolean levelEndBoolean = false;
+
 
     public Playing(Game game) {
         super(game);
@@ -40,6 +42,7 @@ public class Playing extends State implements StateMethods {
         player = new Player(200, 150, (int) (64 * Game.tileScale), (int) (40 * Game.tileScale));
         player.loadLevelData(levelHandler.getCurrentLevel().getLevelData());
         pauseMenu = new PauseMenu(this);
+        levelEnd = new LevelEnd(this);
 
     }
 
@@ -50,12 +53,14 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void update() {
-        if (!paused) {
+        if (!paused && !levelEndBoolean) {
             levelHandler.update();
             player.update();
             checkIfPlayerNearBorder();
-        } else {
+        } else if(paused && !levelEndBoolean){
             pauseMenu.update();
+        }else if(!paused && levelEndBoolean){
+            levelEnd.update();
         }
     }
 
@@ -73,12 +78,12 @@ public class Playing extends State implements StateMethods {
         } else if (levelOffset < 0) {
             levelOffset = 0;
         }
+        if(levelOffset == maxPixelOffset){
+            levelEndBoolean = true;
+        }
     }
     public void checkSpikesTouched(Player p) {
         objectHandler.checkSpikesTouched(p);
-    }
-    public void setGameOver(boolean gameOver) {
-        this.gameOver = gameOver;
     }
 
     @Override
@@ -94,9 +99,6 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1) {
-            player.setPlayerAttacking(true);
-        }
     }
 
     @Override
@@ -167,9 +169,8 @@ public class Playing extends State implements StateMethods {
     }
 
     public void reset() {
-        gameOver = false;
         paused = false;
-        levelCompleted = false;
+        levelEndBoolean = false;
         player.resetAll();
     }
 }

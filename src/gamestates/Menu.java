@@ -12,10 +12,6 @@ import java.awt.image.BufferedImage;
 public class Menu extends State implements StateMethods {
 
     private MenuButton[] buttons = new MenuButton[3];
-    private int menuX;
-    private int menuY;
-    private int menuWidth;
-    private int menuHeight;
     private BufferedImage menuBackground;
 
 
