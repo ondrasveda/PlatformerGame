@@ -2,7 +2,7 @@ package ui;
 
 import gamestates.Gamestate;
 import utilities.Constants;
-import utilities.Load_Save;
+import utilities.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -34,7 +34,7 @@ public class MenuButton {
 
     private void loadImages() {
         images = new BufferedImage[3];
-        BufferedImage tempSave = Load_Save.getImages(Load_Save.menuButtons);
+        BufferedImage tempSave = Load.getImages(Load.menuButtons);
         for(int i = 0; i < images.length; i++){
             images[i] = tempSave.getSubimage(i * Constants.Ui.MenuButton.buttonDefaultWidth, rowIndex * Constants.Ui.MenuButton.buttonDefaultHeight,
                     Constants.Ui.MenuButton.buttonDefaultWidth, Constants.Ui.MenuButton.buttonDefaultHeight);

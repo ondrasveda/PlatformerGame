@@ -4,7 +4,7 @@ import gamestates.Gamestate;
 import gamestates.Playing;
 import main.Game;
 import utilities.Constants;
-import utilities.Load_Save;
+import utilities.Load;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -58,7 +58,7 @@ public class PauseMenu {
     }
 
     private void loadBackground() {
-        background = Load_Save.getImages(Load_Save.pauseBackground);
+        background = Load.getImages(Load.pauseBackground);
         backgroundWidth = background.getWidth() * (int) Game.tileScale;
         backgroundHeight = background.getHeight() * (int) Game.tileScale;
         backgroundXPosition = Game.gameWidth / 2 - backgroundWidth / 2;

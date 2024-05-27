@@ -2,7 +2,7 @@ package gamestates;
 
 import main.Game;
 import ui.MenuButton;
-import utilities.Load_Save;
+import utilities.Load;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -18,7 +18,7 @@ public class Menu extends State implements StateMethods {
     public Menu(Game game) {
         super(game);
         loadButtons();
-        menuBackground = Load_Save.getImages(Load_Save.menuBgImg);
+        menuBackground = Load.getImages(Load.menuBgImg);
     }
 
 

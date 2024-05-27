@@ -1,7 +1,7 @@
 package levels;
 
 import main.Game;
-import utilities.Load_Save;
+import utilities.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,11 +18,11 @@ public class LevelHandler {
     public LevelHandler(Game game) {
         this.game = game;
         importLevelOutsides();
-        level = new Level(Load_Save.getLevelData());
+        level = new Level(Load.getLevelData());
     }
 
     private void importLevelOutsides() {
-        BufferedImage image = Load_Save.getImages(Load_Save.levelTextures);
+        BufferedImage image = Load.getImages(Load.levelTextures);
         levels = new BufferedImage[48];
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 12; i++) {

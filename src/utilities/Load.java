@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public class Load_Save {
+public class Load {
 
     public static final String playerImage = "player.png";
     public static final String levelTextures = "level_textures.png"; //free-game-assets.itch.io/free-green-zone-tileset-pixel-art
@@ -23,7 +23,7 @@ public class Load_Save {
 
     public static BufferedImage getImages(String fileName) {
         BufferedImage image = null;
-        InputStream inputStream = Load_Save.class.getResourceAsStream("/" + fileName);
+        InputStream inputStream = Load.class.getResourceAsStream("/" + fileName);
         try {
             image = ImageIO.read(inputStream);
         } catch (IOException e) {

@@ -1,7 +1,7 @@
 package ui;
 
 import utilities.Constants;
-import utilities.Load_Save;
+import utilities.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,7 +21,7 @@ public class SoundButtons extends PauseButtons {
     }
 
     private void loadButtonImages() {
-        BufferedImage temporaryImage = Load_Save.getImages(Load_Save.volumeButtons);
+        BufferedImage temporaryImage = Load.getImages(Load.volumeButtons);
         buttonImages = new BufferedImage[2][3];
         for (int j = 0; j < buttonImages.length; j++) {
             for (int i = 0; i < buttonImages[j].length; i++) {

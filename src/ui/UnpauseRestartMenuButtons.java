@@ -1,7 +1,7 @@
 package ui;
 
 import utilities.Constants;
-import utilities.Load_Save;
+import utilities.Load;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -20,7 +20,7 @@ public class UnpauseRestartMenuButtons extends PauseButtons {
     }
 
     private void loadImages() {
-        BufferedImage temporaryImage = Load_Save.getImages(Load_Save.unpauseRestartMenuButtons);
+        BufferedImage temporaryImage = Load.getImages(Load.unpauseRestartMenuButtons);
         images = new BufferedImage[3][3];
         for (int j = 0; j < images.length; j++) {
             for(int i = 0; i<images[j].length; i++) {

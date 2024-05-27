@@ -5,9 +5,8 @@ import java.util.ArrayList;
 
 import entities.Player;
 import gamestates.Playing;
-import levels.Level;
 import utilities.Constants;
-import utilities.Load_Save;
+import utilities.Load;
 
 
 
@@ -31,7 +30,7 @@ public class ObjectHandler {
         }
 
         private void loadImages() {
-            spikeImg = Load_Save.getImages(Load_Save.spikes);
+            spikeImg = Load.getImages(Load.spikes);
         }
 
         private void drawTraps(Graphics g, int xLvlOffset) {

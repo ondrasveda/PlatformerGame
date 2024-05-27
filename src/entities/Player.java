@@ -3,7 +3,7 @@ package entities;
 import gamestates.Playing;
 import main.Game;
 import utilities.Constants;
-import utilities.Load_Save;
+import utilities.Load;
 import utilities.OtherMethods;
 
 import java.awt.*;
@@ -60,7 +60,7 @@ public class Player extends Entity {
     }
 
     private void loadAnimation() {
-        image = Load_Save.getImages(Load_Save.playerImage);
+        image = Load.getImages(Load.playerImage);
         this.animations = new BufferedImage[4][6];
         for (int j = 0; j < this.animations.length; j++) {
             for (int i = 0; i < this.animations[j].length; i++) {

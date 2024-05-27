@@ -6,7 +6,7 @@ import main.Game;
 import object.ObjectHandler;
 import ui.LevelEnd;
 import ui.PauseMenu;
-import utilities.Load_Save;
+import utilities.Load;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -24,7 +24,7 @@ public class Playing extends State implements StateMethods {
     private int levelOffset;
     private int leftBorder = (int) (0.25 * Game.gameWidth);
     private int rightBorder = (int) (0.75 * Game.gameWidth);
-    private int levelTileSize = Load_Save.getLevelData()[0].length;
+    private int levelTileSize = Load.getLevelData()[0].length;
     private int maxTileOffset = levelTileSize - Game.gameTileWidth;
     private int maxPixelOffset = maxTileOffset * Game.tileSize;
     private BufferedImage background;
@@ -34,7 +34,7 @@ public class Playing extends State implements StateMethods {
     public Playing(Game game) {
         super(game);
         initializeClasses();
-        background = Load_Save.getImages(Load_Save.levelBackground);
+        background = Load.getImages(Load.levelBackground);
     }
 
     private void initializeClasses() {
