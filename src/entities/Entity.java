@@ -27,9 +27,4 @@ public abstract class Entity {
     public Rectangle2D.Float getHitbox() {
         return hitbox;
     }
-
-    public void drawHitbox(Graphics graphics) {
-        graphics.setColor(Color.PINK);
-        graphics.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
-    }
 }

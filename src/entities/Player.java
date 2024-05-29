@@ -1,6 +1,5 @@
 package entities;
 
-import gamestates.Playing;
 import main.Game;
 import utilities.Constants;
 import utilities.Load;
@@ -29,7 +28,7 @@ public class Player extends Entity {
     private float xSpeed = 0;
     private int[][] levelData;
     private float xHitboxOffset = 20 * Game.tileScale;
-    private float yHitboxOffset = 4 * Game.tileScale;
+    private float yHitboxOffset = 11 * Game.tileScale;
 
     private boolean jump;
     private float airSpeed = 0f;
@@ -37,7 +36,7 @@ public class Player extends Entity {
     private float jumpSpeed = -4f * Game.tileScale;
     private float fallSpeedAfterCollisionWithRoof = 0.5f * Game.tileScale;
     private boolean playerInAir = false;
-    private Playing playing;
+
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
@@ -45,26 +44,25 @@ public class Player extends Entity {
         initializeHitbox(x, y, (int)(22 * Game.tileScale), (int)(27 * Game.tileScale));
     }
 
-    public void update() {
+    public void updatePlayer() {
         this.updatePosition();
         this.updateAnimationTick();
         this.setAnimation();
 
     }
 
-    public void render(Graphics graphics, int levelOffset) {
+    public void renderPlayer(Graphics graphics, int levelOffset) {
 
         graphics.drawImage(animations[playerAction][animationIndex],
                 (int) (hitbox.x - xHitboxOffset) - levelOffset, (int) (hitbox.y - yHitboxOffset), width, height, null);
-        drawHitbox(graphics);
     }
 
     private void loadAnimation() {
         image = Load.getImages(Load.playerImage);
-        this.animations = new BufferedImage[4][6];
+        this.animations = new BufferedImage[4][8];
         for (int j = 0; j < this.animations.length; j++) {
             for (int i = 0; i < this.animations[j].length; i++) {
-                this.animations[j][i] = this.image.getSubimage(i * 64, j * 40, 64, 40);
+                this.animations[j][i] = this.image.getSubimage(i * 32, j * 32, 32, 32);
             }
         }
     }

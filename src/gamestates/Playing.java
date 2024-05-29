@@ -55,7 +55,7 @@ public class Playing extends State implements StateMethods {
     public void update() {
         if (!paused && !levelEndBoolean) {
             levelHandler.update();
-            player.update();
+            player.updatePlayer();
             checkIfPlayerNearBorder();
         } else if(paused && !levelEndBoolean){
             pauseMenu.update();
@@ -91,7 +91,7 @@ public class Playing extends State implements StateMethods {
         graphics.drawImage(background, 0, 0, Game.gameWidth, Game.gameHeight, null);
 
         levelHandler.draw(graphics, levelOffset);
-        player.render(graphics, levelOffset);
+        player.renderPlayer(graphics, levelOffset);
         if (paused) {
             pauseMenu.draw(graphics);
         }

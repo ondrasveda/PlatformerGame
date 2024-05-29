@@ -31,20 +31,20 @@ public class Constants {
     }
 
     public static class PlayerConstants {
-        public static final int IDLE = 0;
-        public static final int RUNNING = 1;
-        public static final int JUMP = 2;
-        public static final int FALLING = 3;
+        public static final int Idle = 0;
+        public static final int Running = 1;
+        public static final int Jump = 2;
+        public static final int Falling = 3;
 
 
         public static int GetImagesAmount(int player_action) {
             switch (player_action) {
                 case 0:
-                    return 5;
+                    return 2;
                 case 1:
-                    return 6;
+                    return 8;
                 case 2:
-                    return 3;
+                    return 5;
                 case 3:
                 default:
                     return 1;

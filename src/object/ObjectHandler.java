@@ -13,7 +13,7 @@ import utilities.Load;
 public class ObjectHandler {
 
         private Playing playing;
-        private BufferedImage spikeImg;
+        private BufferedImage spikeImage;
         private ArrayList<Spike> spikes;
 
         public ObjectHandler(Playing playing) {
@@ -30,12 +30,12 @@ public class ObjectHandler {
         }
 
         private void loadImages() {
-            spikeImg = Load.getImages(Load.spikes);
+            spikeImage = Load.getImages(Load.spikes);
         }
 
-        private void drawTraps(Graphics g, int xLvlOffset) {
+        private void drawSpikes(Graphics g, int xLvlOffset) {
             for (Spike s : spikes)
-                g.drawImage(spikeImg, (int) (s.getHitbox().x - xLvlOffset), (int) (s.getHitbox().y - s.getyDrawOffset()),
+                g.drawImage(spikeImage, (int) (s.getHitbox().x - xLvlOffset), (int) (s.getHitbox().y - s.getyDrawOffset()),
                         Constants.Ui.ObjectConstants.SpikeWidth, Constants.Ui.ObjectConstants.SpikeHeight, null);
 
         }
