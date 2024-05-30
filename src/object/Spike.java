@@ -4,6 +4,9 @@ import main.Game;
 
 public class Spike extends Object{
 
+    /**
+     * Constructs a Spike object with the specified coordinates and object type.
+     */
     public Spike(int x, int y, int objType) {
         super(x, y, objType);
 
@@ -13,5 +16,4 @@ public class Spike extends Object{
         hitbox.y += yDrawOffset;
 
     }
-
 }

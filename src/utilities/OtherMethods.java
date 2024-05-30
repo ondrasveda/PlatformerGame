@@ -8,10 +8,14 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import object.Spike;
-
+/**
+ * The OtherMethods class has various utility methods used in the game that i didnt know where to put.
+ */
 public class OtherMethods {
 
+    /**
+     * Checks if the player can move to the specified position based on the level data.
+     */
     public static boolean canMove(float x, float y, float width, float height, int[][] levelData) {
 
         if (!isSolid(x, y, levelData) && !isSolid(x + width, y + height, levelData) && !isSolid(x + width, y, levelData) && !isSolid(x, y + height, levelData)) {
@@ -19,7 +23,9 @@ public class OtherMethods {
         }
         return false;
     }
-
+    /**
+     * Checks if the specified position is solid (contains an obstacle) in the level.
+     */
     private static boolean isSolid(float x, float y, int[][] levelData) {
         int levelWidth = levelData[0].length * Game.tileSize;
         int levelHeight = levelData.length * Game.tileSize;
@@ -41,6 +47,9 @@ public class OtherMethods {
         }
     }
 
+    /**
+     * Gets the x-coordinate of the next wall adjacent to the player's hitbox.
+     */
     public static float getNextToWall(Rectangle2D.Float hitbox, float xSpeed) {
         int currentTile = (int) (hitbox.x / Game.tileSize);
 
@@ -53,7 +62,9 @@ public class OtherMethods {
         }
     }
 
-
+    /**
+     * Gets the y-coordinate of the next floor or roof adjacent to the player's hitbox.
+     */
     public static float getNextToFloorOrRoof(Rectangle2D.Float hitbox, float airSpeed) {
         int currentTile = (int) (hitbox.y / Game.tileSize);
         if (airSpeed > 0) {
@@ -65,6 +76,9 @@ public class OtherMethods {
         }
     }
 
+    /**
+     * Checks if the player is on the floor.
+     */
     public static boolean playerIsOnTheFloor(Rectangle2D.Float hitbox, int[][] levelData) {
         if (!isSolid(hitbox.x, +hitbox.y + hitbox.height + 1, levelData) && !isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, levelData)) {
             return false;
@@ -72,7 +86,9 @@ public class OtherMethods {
         return true;
     }
 
-
+    /**
+     * Gets the spawn point for the player from the given image.
+     */
     public static Point GetPlayerSpawn(BufferedImage img) {
         for (int j = 0; j < img.getHeight(); j++)
             for (int i = 0; i < img.getWidth(); i++) {
@@ -84,6 +100,9 @@ public class OtherMethods {
         return new Point(Game.tileSize, Game.tileSize);
     }
 
+    /**
+     * Gets a list of spike objects from the given image.
+     */
     public static ArrayList<Spike> GetSpikes(BufferedImage img) {
         ArrayList<Spike> list = new ArrayList<>();
 
@@ -97,6 +116,9 @@ public class OtherMethods {
 
         return list;
     }
+    /**
+     * Gets the level data from the given image.
+     */
     public static int[][] GetLevelData(BufferedImage img) {
         int[][] lvlData = new int[img.getHeight()][img.getWidth()];
         for (int j = 0; j < img.getHeight(); j++)

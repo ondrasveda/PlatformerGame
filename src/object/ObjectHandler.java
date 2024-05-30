@@ -16,11 +16,16 @@ public class ObjectHandler {
         private BufferedImage spikeImage;
         private ArrayList<Spike> spikes;
 
+    /**
+     * Constructor for an ObjectHandler with the specified Playing instance.
+     */
         public ObjectHandler(Playing playing) {
             this.playing = playing;
             loadImages();
         }
-
+    /**
+     * Checks if the player has touched any spikes.
+     */
         public void checkSpikesTouched(Player player) {
             for (Spike s : spikes)
                 if (s.getHitbox().intersects(player.getHitbox())){
@@ -28,14 +33,18 @@ public class ObjectHandler {
                 }
 
         }
-
+    /**
+     * Loads images for spikes.
+     */
         private void loadImages() {
             spikeImage = Load.getImages(Load.spikes);
         }
-
-        private void drawSpikes(Graphics g, int xLvlOffset) {
-            for (Spike s : spikes)
-                g.drawImage(spikeImage, (int) (s.getHitbox().x - xLvlOffset), (int) (s.getHitbox().y - s.getyDrawOffset()),
+    /**
+     * Draws spikes on the screen.
+     */
+        private void drawSpikes(Graphics graphics, int xLvlOffset) {
+            for (Spike spike : spikes)
+                graphics.drawImage(spikeImage, (int) (spike.getHitbox().x - xLvlOffset), (int) (spike.getHitbox().y - spike.getYDrawOffset()),
                         Constants.Ui.ObjectConstants.SpikeWidth, Constants.Ui.ObjectConstants.SpikeHeight, null);
 
         }

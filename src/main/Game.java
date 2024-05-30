@@ -3,34 +3,38 @@ package main;
 import gamestates.Gamestate;
 import gamestates.Menu;
 import gamestates.Playing;
-import levels.LevelHandler;
-import entities.Player;
 
 import java.awt.*;
 
 
 public class Game implements Runnable {
+    /**
+     * variables out of classes
+     * used to access properties and methods of those classes
+     */
     private GameWindow gameWindow;
     private GamePanel gamePanel;
-    private Thread gameLoop;
-    private final int FPS = 120;
-    private final int UPS = 100;
-    private Player player;
-    private LevelHandler levelHandler;
     private Playing playing;
     private Menu menu;
 
+    private Thread gameLoop;
+
+    public static final int windowTileWidth = 26;
+    public static final int windowTileHeight = 14;
+
     public static final int defaultTileSize = 32;
     public static final float tileScale = 1.0f;
-    public static final int gameTileWidth = 26; //40
-    public static final int gameTileHeight = 14; //23
     public static final int tileSize = (int) (defaultTileSize * tileScale);
-    public static final int gameWidth = tileSize * gameTileWidth;
-    public static final int gameHeight = tileSize * gameTileHeight;
+    public static final int windowWidth = tileSize * windowTileWidth;
+    public static final int windowHeight = tileSize * windowTileHeight;
 
+    /**
+     * calls to create the gamewindow and panel
+     * calls for menu and playing classes initialization
+     * calls for the start of the gameloop
+     */
     public Game() {
         initializeClasses();
-
 
         gamePanel = new GamePanel(this);
         gameWindow = new GameWindow(gamePanel);
@@ -40,32 +44,41 @@ public class Game implements Runnable {
         startGameLoop();
     }
 
+    /**
+     * creates instances of menu and playing classes
+     */
     private void initializeClasses() {
         menu = new Menu(this);
         playing = new Playing(this);
     }
 
+    /**
+     * starts the gameloop
+     */
     private void startGameLoop() {
         this.gameLoop = new Thread(this);
         this.gameLoop.start();
     }
 
+    /**
+     * Depending on the value of "Gamestate.gamestate", one of the four cases
+     * is executed which updates the current game state by calling the appropriate update method of the corresponding object
+     */
     public void update() {
         switch (Gamestate.gamestate) {
-            case MENU -> {
-                menu.update();
-            }
-            case PLAYING -> {
-                playing.update();
-            }
+            case MENU -> menu.update();
+            case PLAYING -> playing.update();
             case OPTIONS -> {
 
             }
-            case QUIT -> {
-                System.exit(0);
-            }
+            case QUIT -> System.exit(0);
+
         }
     }
+
+    /**
+     * Renders the current game state by calling the appropriate draw method of the corresponding object
+     */
 
     public void render(Graphics graphics) {
         switch (Gamestate.gamestate) {
@@ -76,10 +89,14 @@ public class Game implements Runnable {
                 playing.draw(graphics);
             }
         }
-
     }
 
-
+    /**
+     * Runs the game loop that updates and renders the game at a fixed rate
+     * The method uses a while loop to continuously update and render the game
+     * It calculates the time elapsed since the last update and render, and updates and renders the game at a fixed rate.
+     * It also calculates and prints the frames per second (FPS) and updates per second (UPS) every second
+     */
     public void run() {
         double timePerFrame = 8333333.333333333;
         double timePerUpdate = 10000000.0;
@@ -119,17 +136,15 @@ public class Game implements Runnable {
         }
     }
 
+    /**
+     * getters for menu and playing
+     * returns menu and playing objects
+     */
     public Menu getMenu() {
         return menu;
     }
 
     public Playing getPlaying() {
         return playing;
-    }
-
-    public void focusLost() {
-        if (Gamestate.gamestate == Gamestate.PLAYING) {
-            playing.getPlayer().resetDirection();
-        }
     }
 }

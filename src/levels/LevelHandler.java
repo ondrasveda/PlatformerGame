@@ -6,37 +6,42 @@ import utilities.Load;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static main.Game.tileSize;
-
-
 public class LevelHandler {
 
     private Game game;
-    private BufferedImage[] levels;
+    private BufferedImage[] levelTextures;
     private Level level;
 
+    /**
+     * Constructs for the LevelHandler object with the specified game.
+
+     */
     public LevelHandler(Game game) {
         this.game = game;
-        importLevelOutsides();
+        importLevelTextures();
         level = new Level(Load.getLevelData());
     }
-
-    private void importLevelOutsides() {
+    /**
+     * Imports level textures for building the level.
+     */
+    private void importLevelTextures() {
         BufferedImage image = Load.getImages(Load.levelTextures);
-        levels = new BufferedImage[48];
+        levelTextures = new BufferedImage[48];
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 12; i++) {
                 int index = j * 12 + i;
-                levels[index] = image.getSubimage(i * 32, j * 32, 32, 32);
+                levelTextures[index] = image.getSubimage(i * 32, j * 32, 32, 32);
             }
         }
     }
-
+    /**
+     * Draws the current level on the screen.
+     */
     public void draw(Graphics graphics, int levelOffset) {
-        for (int j = 0; j < Game.gameTileHeight; j++) {
+        for (int j = 0; j < Game.windowTileHeight; j++) {
             for (int i = 0; i < level.getLevelData()[0].length; i++) {
                 int index = level.getImageIndex(i, j);
-                graphics.drawImage(levels[index],  tileSize *i - levelOffset , j * tileSize, null);
+                graphics.drawImage(levelTextures[index],  Game.tileSize *i - levelOffset , j * Game.tileSize, null);
             }
         }
 

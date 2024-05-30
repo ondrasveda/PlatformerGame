@@ -23,6 +23,10 @@ public class PauseMenu {
     private UnpauseRestartMenuButtons unpauseButton;
     private Playing playing;
 
+    /**
+     * Constructor for the PauseMenu object with the specified playing instance.
+
+     */
     public PauseMenu(Playing playing) {
         this.playing = playing;
         loadBackground();
@@ -30,6 +34,9 @@ public class PauseMenu {
         createUnpauseRestartMenuButtons();
     }
 
+    /**
+     * Creates the unpause, restart, and main menu buttons of the pause menu.
+     */
     private void createUnpauseRestartMenuButtons() {
         int menuX = 313 * (int) Game.tileScale;
         int restartX = 387 * (int) Game.tileScale;
@@ -41,12 +48,15 @@ public class PauseMenu {
                 Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, 0);
         restartButton = new UnpauseRestartMenuButtons(restartX, yPos,
                 Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize,
-                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, 1 );
+                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, 1);
         menuButton = new UnpauseRestartMenuButtons(menuX, yPos,
                 Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize,
-                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, 2 );
+                Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, 2);
     }
 
+    /**
+     * Draws the sound buttons of the pause menu.
+     */
     private void drawPauseButtons() {
         int soundXPosition = 450 * (int) Game.tileScale;
         int musicYPosition = 165 * (int) Game.tileScale;
@@ -57,14 +67,20 @@ public class PauseMenu {
                 Constants.Ui.PauseButton.soundButtonSize, Constants.Ui.PauseButton.soundButtonSize);
     }
 
+    /**
+     * Draws the sound buttons of the pause menu.
+     */
     private void loadBackground() {
         background = Load.getImages(Load.pauseBackground);
         backgroundWidth = background.getWidth() * (int) Game.tileScale;
         backgroundHeight = background.getHeight() * (int) Game.tileScale;
-        backgroundXPosition = Game.gameWidth / 2 - backgroundWidth / 2;
+        backgroundXPosition = Game.windowWidth / 2 - backgroundWidth / 2;
         backgroundYPosition = 50 * (int) Game.tileScale;
     }
 
+    /**
+     * Updates the pause menu components.
+     */
     public void update() {
         musicOnOffButton.update();
         sfxOnOffButton.update();
@@ -74,6 +90,9 @@ public class PauseMenu {
         unpauseButton.update();
     }
 
+    /**
+     * Draws the pause menu components on the graphics context.
+     */
     public void draw(Graphics graphics) {
         graphics.drawImage(background, backgroundXPosition, backgroundYPosition, backgroundWidth, backgroundHeight, null);
 
@@ -84,50 +103,61 @@ public class PauseMenu {
         restartButton.draw(graphics);
         unpauseButton.draw(graphics);
     }
-    private boolean isIn(MouseEvent e, PauseButtons button){
-        if(button.getBounds().contains(e.getX(),e.getY())){
+
+    /**
+     * Checks if the mouse event occurred within the bounds of a specific button.
+     */
+    private boolean isInButton(MouseEvent e, PauseButtons button) {
+        if (button.getButtonBounds().contains(e.getX(), e.getY())) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-
+    /**
+     * Handles the mouse press event by updating the state of buttons based on the event.
+     */
     public void mousePressed(MouseEvent e) {
-        if (isIn(e, musicOnOffButton)){
+        if (isInButton(e, musicOnOffButton)) {
             musicOnOffButton.setMousePressed(true);
-        }else if(isIn(e,sfxOnOffButton)){
+        } else if (isInButton(e, sfxOnOffButton)) {
             sfxOnOffButton.setMousePressed(true);
-        }else if(isIn(e,menuButton)){
+        } else if (isInButton(e, menuButton)) {
             menuButton.setMousePressed(true);
-        }else if(isIn(e,restartButton)){
+        } else if (isInButton(e, restartButton)) {
             restartButton.setMousePressed(true);
-        }else if(isIn(e,unpauseButton)){
+        } else if (isInButton(e, unpauseButton)) {
             unpauseButton.setMousePressed(true);
         }
     }
 
+    /**
+     * Handles the mouse release event by performing actions based on the released button.
+     */
     public void mouseReleased(MouseEvent e) {
-        if (isIn(e, musicOnOffButton)){
-            if(musicOnOffButton.isMousePressed()){
+        if (isInButton(e, musicOnOffButton)) {
+            if (musicOnOffButton.isMousePressed()) {
                 musicOnOffButton.setSoundOff(!musicOnOffButton.isSoundOff());
             }
-        }else if(isIn(e,sfxOnOffButton)){
-            if(sfxOnOffButton.isMousePressed()){
+        } else
+            if (isInButton(e, sfxOnOffButton)) {
+            if (sfxOnOffButton.isMousePressed()) {
                 sfxOnOffButton.setSoundOff(!sfxOnOffButton.isSoundOff());
             }
-        }else if(isIn(e,menuButton)){
-            if(menuButton.isMousePressed()){
+        } else if (isInButton(e, menuButton)) {
+            if (menuButton.isMousePressed()) {
+                playing.reset();
                 Gamestate.gamestate = Gamestate.MENU;
-                if(playing.isPaused()){
+                if (playing.isPaused()) {
                     playing.unpauseGame();
                 }
             }
-        }else if(isIn(e,restartButton)){
-            if(restartButton.isMousePressed()){
+        } else if (isInButton(e, restartButton)) {
+            if (restartButton.isMousePressed()) {
                 playing.reset();
             }
-        }else if(isIn(e,unpauseButton)){
-            if(unpauseButton.isMousePressed()){
+        } else if (isInButton(e, unpauseButton)) {
+            if (unpauseButton.isMousePressed()) {
                 playing.unpauseGame();
             }
         }
@@ -138,6 +168,9 @@ public class PauseMenu {
         unpauseButton.resetButton();
     }
 
+    /**
+     * Handles the mouse move event by updating the mouse-over state of buttons.
+     */
     public void mouseMoved(MouseEvent e) {
         musicOnOffButton.setMouseOver(false);
         sfxOnOffButton.setMouseOver(false);
@@ -145,17 +178,16 @@ public class PauseMenu {
         restartButton.setMouseOver(false);
         unpauseButton.setMouseOver(false);
 
-        if (isIn(e, musicOnOffButton)){
+        if (isInButton(e, musicOnOffButton)) {
             musicOnOffButton.setMouseOver(true);
-        }else if(isIn(e,sfxOnOffButton)){
+        } else if (isInButton(e, sfxOnOffButton)) {
             sfxOnOffButton.setMouseOver(true);
-        }else if(isIn(e,menuButton)){
+        } else if (isInButton(e, menuButton)) {
             menuButton.setMouseOver(true);
-        }else if(isIn(e,restartButton)){
+        } else if (isInButton(e, restartButton)) {
             restartButton.setMouseOver(true);
-        }else if(isIn(e,unpauseButton)){
+        } else if (isInButton(e, unpauseButton)) {
             unpauseButton.setMouseOver(true);
         }
     }
-
 }

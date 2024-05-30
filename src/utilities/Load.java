@@ -8,19 +8,29 @@ import java.io.InputStream;
 
 
 public class Load {
+    /**
+     * File paths for all the game assets.
+     */
+    public static final String playerImage = "player.png"; //penzilla.itch.io/hooded-protagonist
 
-    public static final String playerImage = "player.png";
     public static final String levelTextures = "level_textures.png"; //free-game-assets.itch.io/free-green-zone-tileset-pixel-art
+    public static final String levelBackground = "level_background.png"; //free-game-assets.itch.io/free-green-zone-tileset-pixel-art
     public static final String level = "level.png";
+
     public static final String menuButtons = "menu_button_textures.png";
+    public static final String menuBackgroundImage = "menu_background.png";
+
     public static final String pauseBackground = "pause_background.png";
     public static final String volumeButtons = "volume_buttons.png";
     public static final String unpauseRestartMenuButtons = "unpause_restart_menu_buttons.png";
-    public static final String menuBgImg = "menu_background.png";
-    public static final String levelBackground = "level_background.png";
+
     public static final String spikes = "spikes.png";
 
 
+
+    /**
+     * Loads an image from the specified file path.
+     */
     public static BufferedImage getImages(String fileName) {
         BufferedImage image = null;
         InputStream inputStream = Load.class.getResourceAsStream("/" + fileName);
@@ -38,6 +48,9 @@ public class Load {
         return image;
     }
 
+    /**
+     * Retrieves level data from the level image.
+     */
     public static int[][] getLevelData() {
         BufferedImage image = getImages(level);
         int[][] levelData = new int[image.getHeight()][image.getWidth()];

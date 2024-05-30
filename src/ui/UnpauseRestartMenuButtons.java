@@ -13,12 +13,18 @@ public class UnpauseRestartMenuButtons extends PauseButtons {
     private boolean mouseOver;
     private boolean mousePressed;
 
+    /**
+     * Constructs an UnpauseRestartMenuButtons object with the specified position, width, height, and row index.
+     */
     public UnpauseRestartMenuButtons(int xPosition, int yPosition, int width, int height, int rowIndex) {
         super(xPosition, yPosition, width, height);
         this.rowIndex = rowIndex;
         loadImages();
     }
 
+    /**
+     * Loads the images for different button states.
+     */
     private void loadImages() {
         BufferedImage temporaryImage = Load.getImages(Load.unpauseRestartMenuButtons);
         images = new BufferedImage[3][3];
@@ -31,13 +37,18 @@ public class UnpauseRestartMenuButtons extends PauseButtons {
         }
     }
 
-
+    /**
+     * Draws the button's current image based on its state.
+     */
     public void draw(Graphics graphics) {
-        graphics.drawImage(images[index][rowIndex], xPosition, yPosition,
+        graphics.drawImage(images[index][rowIndex], buttonXPosition, buttonYPosition,
                 Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize,
                 Constants.Ui.UnpauseRestartMenuButton.unpauseRestartMenuButtonSize, null);
     }
 
+    /**
+     * Updates the button's state based on mouse interaction.
+     */
     public void update() {
         if (mouseOver) {
             index = 1;
@@ -50,23 +61,26 @@ public class UnpauseRestartMenuButtons extends PauseButtons {
         }
     }
 
+    /**
+     * Resets the button's mouseOver and mousePressed states to false.
+     */
     public void resetButton() {
         mouseOver = false;
         mousePressed = false;
     }
 
+    /**
+     * getters/setters
+     */
     public boolean isMouseOver() {
         return mouseOver;
     }
-
     public void setMouseOver(boolean mouseOver) {
         this.mouseOver = mouseOver;
     }
-
     public boolean isMousePressed() {
         return mousePressed;
     }
-
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
     }

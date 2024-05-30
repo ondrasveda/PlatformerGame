@@ -4,6 +4,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+/**
+ * Defines the methods required for a game state, including updating, drawing,
+ * and handling various input events.
+ */
 public interface StateMethods {
     public void update();
     public void draw(Graphics graphics);

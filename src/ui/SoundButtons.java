@@ -15,11 +15,17 @@ public class SoundButtons extends PauseButtons {
     private int rowIndex;
     private int collumnIndex;
 
+    /**
+     * Constructs a SoundButtons object with the specified position and dimensions.
+     */
     public SoundButtons(int xPosition, int yPosition, int width, int height) {
         super(xPosition, yPosition, width, height);
         loadButtonImages();
     }
 
+    /**
+     * Loads the images for the sound buttons from the resources.
+     */
     private void loadButtonImages() {
         BufferedImage temporaryImage = Load.getImages(Load.volumeButtons);
         buttonImages = new BufferedImage[2][3];
@@ -32,11 +38,17 @@ public class SoundButtons extends PauseButtons {
         }
     }
 
+    /**
+     * Resets the mouse-over and mouse-pressed states of the button.
+     */
     public void resetButton() {
         mouseOver = false;
         mousePressed = false;
     }
 
+    /**
+     * Updates the state of the button based on mouse interactions and sound settings.
+     */
     public void update() {
         collumnIndex = 0;
 
@@ -52,11 +64,16 @@ public class SoundButtons extends PauseButtons {
             collumnIndex = 2;
         }
     }
-
+    /**
+     * Draws the sound button using the current state and images.
+     */
     public void draw(Graphics graphics) {
-        graphics.drawImage(buttonImages[rowIndex][collumnIndex], xPosition, yPosition, width, height, null);
+        graphics.drawImage(buttonImages[rowIndex][collumnIndex], buttonXPosition, buttonYPosition, buttonWidth, buttonHeight, null);
     }
 
+    /**
+     * getters/setters
+     */
     public boolean isMouseOver() {
         return mouseOver;
     }
