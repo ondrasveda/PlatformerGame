@@ -17,12 +17,12 @@ public class Load {
     public static final String levelBackground = "level_background.png"; //free-game-assets.itch.io/free-green-zone-tileset-pixel-art
     public static final String level = "level.png";
 
-    public static final String menuButtons = "menu_button_textures.png";
-    public static final String menuBackgroundImage = "menu_background.png";
+    public static final String menuButtons = "menu_button_textures.png"; //pixelfrog-assets.itch.io/treasure-hunters
+    public static final String menuBackgroundImage = "menu_background.png"; //pixelfrog-assets.itch.io/treasure-hunters
 
-    public static final String pauseBackground = "pause_background.png";
-    public static final String volumeButtons = "volume_buttons.png";
-    public static final String unpauseRestartMenuButtons = "unpause_restart_menu_buttons.png";
+    public static final String pauseBackground = "pause_background.png"; //pixelfrog-assets.itch.io/treasure-hunters
+    public static final String volumeButtons = "volume_buttons.png"; //pixelfrog-assets.itch.io/treasure-hunters
+    public static final String unpauseRestartMenuButtons = "unpause_restart_menu_buttons.png"; //pixelfrog-assets.itch.io/treasure-hunters
 
     public static final String spikes = "spikes.png";
 
