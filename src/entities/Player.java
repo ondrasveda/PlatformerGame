@@ -71,9 +71,9 @@ public class Player extends Entity {
      * Updates the player's state, including position, animation tick, and current animation.
      */
     public void updatePlayer() {
-        this.updatePlayerPosition();
-        this.updateAnimationTick();
-        this.setAnimation();
+        updatePlayerPosition();
+        updateAnimationTick();
+        setAnimation();
 
     }
 
@@ -90,10 +90,10 @@ public class Player extends Entity {
      */
     private void loadAnimation() {
         image = Load.getImages(Load.playerImage);
-        this.animations = new BufferedImage[4][8];
-        for (int j = 0; j < this.animations.length; j++) {
-            for (int i = 0; i < this.animations[j].length; i++) {
-                this.animations[j][i] = this.image.getSubimage(i * 32, j * 32, 32, 32);
+        animations = new BufferedImage[4][8];
+        for (int j = 0; j < animations.length; j++) {
+            for (int i = 0; i < animations[j].length; i++) {
+                animations[j][i] = image.getSubimage(i * 32, j * 32, 32, 32);
             }
         }
     }
@@ -150,8 +150,8 @@ public class Player extends Entity {
      * Resets the animation tick and index to zero.
      */
     private void resetAnimationTick() {
-        this.animationTick = 0;
-        this.animationIndex = 0;
+        animationTick = 0;
+        animationIndex = 0;
     }
 
 

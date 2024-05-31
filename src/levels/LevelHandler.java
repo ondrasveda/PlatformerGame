@@ -14,7 +14,6 @@ public class LevelHandler {
 
     /**
      * Constructs for the LevelHandler object with the specified game.
-
      */
     public LevelHandler(Game game) {
         this.game = game;
@@ -54,5 +53,4 @@ public class LevelHandler {
     public Level getCurrentLevel() {
         return level;
     }
-
 }
