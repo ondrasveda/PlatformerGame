@@ -18,7 +18,7 @@ public class Load {
     public static final String level = "level.png";
 
     public static final String menuButtons = "menu_button_textures.png"; //pixelfrog-assets.itch.io/treasure-hunters
-    public static final String menuBackgroundImage = "menu_background.png"; //pixelfrog-assets.itch.io/treasure-hunters
+    public static final String menuBackgroundImage = "menu_background.png"; //pressstart.vip/images/uploads/assets/foggy.png
 
     public static final String pauseBackground = "pause_background.png"; //pixelfrog-assets.itch.io/treasure-hunters
     public static final String volumeButtons = "volume_buttons.png"; //pixelfrog-assets.itch.io/treasure-hunters
